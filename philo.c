@@ -54,6 +54,5 @@ int	main(int argc, char **argv)
 	while (++i < n_forks)
 		pthread_mutex_init(&data.forks[i], NULL);
 	start_threads(&data);
-	//pthread_mutex_lock(&data->forks);
-	//pthread_mutex_unlock(&data->forks);
+
 }
