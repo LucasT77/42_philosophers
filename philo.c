@@ -50,7 +50,7 @@ int	main(int argc, char **argv)
 	data.philos = malloc(sizeof(t_philos) * data.n_philos);
 	data.threads = malloc(sizeof(pthread_t) * data.n_philos);
 	data.forks = malloc(sizeof(pthread_mutex_t) * data.n_forks);
-	i = 0;
+	i = -1;
 	while (++i < n_forks)
 		pthread_mutex_init(&data.forks[i], NULL);
 	start_threads(&data);

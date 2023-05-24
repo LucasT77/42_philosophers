@@ -6,7 +6,7 @@
 /*   By: luaraujo <luaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/06 16:09:12 by luaraujo          #+#    #+#             */
-/*   Updated: 2023/05/23 17:21:44 by luaraujo         ###   ########.fr       */
+/*   Updated: 2023/05/24 15:57:22 by luaraujo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,9 @@
 typedef struct s_philo
 {
 	char	state;
+	long	start_time_to_die;
+	int		eat_count;
+	int		full;
 }				t_philo;
 
 typedef struct s_data
@@ -40,7 +43,11 @@ typedef struct s_data
 	int				id;
 }				t_data;
 
-int	ft_atoi(const char *nptr);
+int		ft_atoi(const char *nptr);
 long	get_time(void);
+void	start_threads(t_data *data);
+void	*philo(void *arg);
+void	think(t_data *data, int id);
+void	the_end(t_data *data);
 
 #endif
