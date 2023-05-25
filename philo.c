@@ -10,12 +10,10 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "data.h"
+#include "philo.h"
 
 static int	get_the_variables(int argc, char **argv, t_data *data)
 {
-	int	i;
-
 	data->n_philos = ft_atoi(argv[1]);
 	data->n_forks = data->n_philos;
 	data->time_to_die = ft_atoi(argv[2]);
@@ -24,14 +22,9 @@ static int	get_the_variables(int argc, char **argv, t_data *data)
 	if (argc == 6)
 		data->max_times_can_eat = ft_atoi(argv[5]);
 	data->philos = malloc(sizeof(int) * data->n_philos);
-	if (!data->datas)
+	if (!data->philos)
 		return (-1);
-	i = 0;
-	while (i < data->n_philos)
-	{
-		data->philos[i] = i + 1;
-		i++;
-	}
+	return (1);
 }
 
 int	main(int argc, char **argv)
@@ -47,12 +40,12 @@ int	main(int argc, char **argv)
 	if (get_the_variables(argc, argv, &data) == -1)
 		return (0);
 	data.start_time = get_time();
-	data.philos = malloc(sizeof(t_philos) * data.n_philos);
+	data.philos = malloc(sizeof(t_philo) * data.n_philos);
 	data.threads = malloc(sizeof(pthread_t) * data.n_philos);
 	data.forks = malloc(sizeof(pthread_mutex_t) * data.n_forks);
 	i = -1;
-	while (++i < n_forks)
+	while (++i < data.n_forks)
 		pthread_mutex_init(&data.forks[i], NULL);
 	start_threads(&data);
-
+	return (0);
 }

@@ -6,13 +6,13 @@
 #    By: luaraujo <luaraujo@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/02 15:22:54 by luaraujo          #+#    #+#              #
-#    Updated: 2023/05/24 15:55:20 by luaraujo         ###   ########.fr        #
+#    Updated: 2023/05/25 15:44:45 by luaraujo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME			=	philosophers
 
-SOURCE			=	philo.c src/utils.c src/threads.c src/states.c src/the_end.c
+SOURCE			=	philo.c src/utils.c src/threads.c src/states.c src/free_all.c
 
 OBJECT			=	$(SOURCE:.c=.o)
  
