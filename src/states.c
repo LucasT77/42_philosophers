@@ -6,7 +6,7 @@
 /*   By: luaraujo <luaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 13:42:29 by luaraujo          #+#    #+#             */
-/*   Updated: 2023/05/25 16:47:07 by luaraujo         ###   ########.fr       */
+/*   Updated: 2023/05/25 17:16:56 by luaraujo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,9 +33,7 @@ static int	eat(t_data *data, int id)
 	printf("%ld %d has taken a fork\n", data->time_now, (id + 1));
 	printf("%ld %d is eating\n", data->time_now, (id + 1));
 	data->philos[id].eat_count++;
-	while (1)
-		if (get_time() - data->start_eat >= data->time_to_eat)
-			break ;
+	usleep(data->time_to_eat);
 	pthread_mutex_unlock(&data->forks[id]);
 	pthread_mutex_unlock(&data->forks[id2]);
 	return (1);
@@ -48,9 +46,7 @@ static int	sleeping(t_data *data, int id)
 	start_sleep = get_time();
 	data->time_now = get_time() - data->start_time;
 	printf("%ld %d is sleeping\n", data->time_now, (id + 1));
-	while (1)
-		if (get_time() - start_sleep >= data->time_to_sleep)
-			break ;
+	usleep(data->time_to_sleep);
 	return (1);
 }
 
