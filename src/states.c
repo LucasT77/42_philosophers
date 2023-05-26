@@ -28,12 +28,11 @@ static int	eat(t_data *data, int id)
 		pthread_mutex_unlock(&data->forks[id]);
 		return (0);
 	}
-	data->start_eat = get_time();
 	data->time_now = get_time() - data->start_time;
 	printf("%ld %d has taken a fork\n", data->time_now, (id + 1));
 	printf("%ld %d is eating\n", data->time_now, (id + 1));
 	data->philos[id].eat_count++;
-	usleep(data->time_to_eat);
+	usleep(data->time_to_eat * 1000);
 	pthread_mutex_unlock(&data->forks[id]);
 	pthread_mutex_unlock(&data->forks[id2]);
 	return (1);
@@ -41,12 +40,9 @@ static int	eat(t_data *data, int id)
 
 static int	sleeping(t_data *data, int id)
 {
-	long	start_sleep;
-
-	start_sleep = get_time();
 	data->time_now = get_time() - data->start_time;
 	printf("%ld %d is sleeping\n", data->time_now, (id + 1));
-	usleep(data->time_to_sleep);
+	usleep(data->time_to_sleep * 1000);
 	return (1);
 }
 
@@ -72,5 +68,6 @@ void	think(t_data *data, int id)
 		if (data->max_times_can_eat && data->philos[id].eat_count
 			== data->max_times_can_eat)
 			data->count_philos_filled++;
+		printf("%d\n", data->death);
 	}
 }

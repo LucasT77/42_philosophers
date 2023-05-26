@@ -40,7 +40,6 @@ typedef struct s_data
 	int				max_times_can_eat;
 	long			start_time;
 	long			time_now;
-	long			start_eat;
 	int				id;
 	int				death;
 	int				count_philos_filled;

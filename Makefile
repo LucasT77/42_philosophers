@@ -12,7 +12,7 @@
 
 NAME			=	philosophers
 
-SOURCE			=	philo.c src/utils.c src/threads.c src/states.c src/free_all.c
+SOURCE			=	philo.c src/utils.c src/threads.c src/states.c
 
 OBJECT			=	$(SOURCE:.c=.o)
  

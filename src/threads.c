@@ -16,11 +16,20 @@ void	*philo(void *arg)
 {
 	t_data	*data;
 	int		id;
+	int		i;
 
 	data = (t_data *)arg;
 	id = data->id;
 	data->philos[id].eat_count = 0;
 	think(&(*data), id);
+	i = 0;
+	while (i < data->n_philos)
+	{
+		if (i == id)
+			continue ;
+		pthread_detach(data->threads[i]);
+		i++;
+	}
 	return (0);
 }
 
