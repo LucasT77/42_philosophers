@@ -21,6 +21,8 @@ static int	get_the_variables(int argc, char **argv, t_data *data)
 	data->time_to_sleep = ft_atoi(argv[4]);
 	if (argc == 6)
 		data->max_times_can_eat = ft_atoi(argv[5]);
+	else
+		data->max_times_can_eat = -1;
 	data->philos = malloc(sizeof(int) * data->n_philos);
 	if (!data->philos)
 		return (-1);
@@ -46,6 +48,7 @@ int	main(int argc, char **argv)
 	i = -1;
 	while (++i < data.n_forks)
 		pthread_mutex_init(&data.forks[i], NULL);
+	pthread_mutex_init(&data.block_print, NULL);
 	start_threads(&data);
 	return (0);
 }

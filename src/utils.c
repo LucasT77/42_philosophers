@@ -41,7 +41,7 @@ int	ft_atoi(const char *nptr)
 long	get_time(void)
 {
 	struct timeval	time;
-	long	milliseconds;
+	long			milliseconds;
 
 	gettimeofday(&time, NULL);
 	milliseconds = time.tv_sec * 1000;
@@ -56,7 +56,26 @@ void	free_all(t_data *data)
 	i = 0;
 	while (++i < data->n_forks)
 		pthread_mutex_destroy(&data->forks[i]);
+	pthread_mutex_destroy(&data->block_print);
 	free(data->philos);
 	free(data->threads);
 	free(data->forks);
+}
+
+void	print_states(t_data *data, int id, char state)
+{
+	if (data->death != 0)
+		return ;
+	pthread_mutex_lock(&data->block_print);
+	if (state == 'd')
+		printf ("%ld %d died\n", data->time_now, (id + 1));
+	else if (state == 'f' && data->death == 0)
+		printf ("%ld %d has taken a fork\n", data->time_now, (id + 1));
+	else if (state == 'e' && data->death == 0)
+		printf ("%ld %d is eating\n", data->time_now, (id + 1));
+	else if (state == 's' && data->death == 0)
+		printf ("%ld %d is sleeping\n", data->time_now, (id + 1));
+	else if (state == 't' && data->death == 0)
+		printf ("%ld %d is thinking\n", data->time_now, (id + 1));
+	pthread_mutex_unlock(&data->block_print);
 }

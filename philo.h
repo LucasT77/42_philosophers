@@ -24,13 +24,13 @@ typedef struct s_philo
 {
 	long	start_time_to_die;
 	int		eat_count;
-	//int		full;
 }				t_philo;
 
 typedef struct s_data
 {
 	pthread_t		*threads;
 	pthread_mutex_t	*forks;
+	pthread_mutex_t	block_print;
 	t_philo			*philos;
 	int				n_philos;
 	int				n_forks;
@@ -51,5 +51,6 @@ void	start_threads(t_data *data);
 void	*philo(void *arg);
 void	think(t_data *data, int id);
 void	free_all(t_data *data);
+void	print_states(t_data *data, int id, char state);
 
 #endif

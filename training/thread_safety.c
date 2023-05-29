@@ -29,3 +29,8 @@ int	main()
 }
 
 // A bad example of thread usage
+
+
+
+//printf("Nº DE VEZES QUE %d COMEU: %d\n", (id + 1), data->philos[id].eat_count);
+//printf("QUANTOS JÁ COMERAM O MIN: %d\n", data->count_philos_filled);
