@@ -6,7 +6,7 @@
 /*   By: luaraujo <luaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/15 17:11:47 by luaraujo          #+#    #+#             */
-/*   Updated: 2023/05/23 15:20:27 by luaraujo         ###   ########.fr       */
+/*   Updated: 2023/06/02 17:21:57 by luaraujo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,10 @@ int	main(int argc, char **argv)
 	while (++i < data.n_forks)
 		pthread_mutex_init(&data.forks[i], NULL);
 	pthread_mutex_init(&data.block_print, NULL);
-	//start_threads(&data);
-	start_process(&data);
+	data->id = 0;
+	data->death = 0;
+	data.pid_index = 0;
+	data->count_philos_filled = 0;
+	start_processes(&data);
 	return (0);
 }

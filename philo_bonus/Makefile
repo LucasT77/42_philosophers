@@ -6,13 +6,13 @@
 #    By: luaraujo <luaraujo@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/02 15:22:54 by luaraujo          #+#    #+#              #
-#    Updated: 2023/05/25 15:44:45 by luaraujo         ###   ########.fr        #
+#    Updated: 2023/06/02 15:33:47 by luaraujo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME			=	philosophers
 
-SOURCE			=	main.c
+SOURCE			=	main.c philos.c
 
 OBJECT			=	$(SOURCE:.c=.o)
  
