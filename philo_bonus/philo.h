@@ -6,7 +6,7 @@
 /*   By: luaraujo <luaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/06 16:09:12 by luaraujo          #+#    #+#             */
-/*   Updated: 2023/06/02 17:22:13 by luaraujo         ###   ########.fr       */
+/*   Updated: 2023/06/05 15:42:17 by luaraujo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@
 # include <semaphore.h>
 # include <signal.h>
 
+#define SEM_NAME "/forks"
+
 typedef struct s_philo
 {
 	pid_t	pid;
@@ -37,8 +39,7 @@ typedef struct s_philo
 typedef struct s_data
 {
 	pthread_t		*threads;
-	pthread_mutex_t	*forks;
-	pthread_mutex_t	block_print;
+	sem_t			*semaphore;
 	t_philo			*philos;
 	int				n_philos;
 	int				n_forks;

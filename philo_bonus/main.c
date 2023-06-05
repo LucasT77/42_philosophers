@@ -6,7 +6,7 @@
 /*   By: luaraujo <luaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/15 17:11:47 by luaraujo          #+#    #+#             */
-/*   Updated: 2023/06/02 17:21:57 by luaraujo         ###   ########.fr       */
+/*   Updated: 2023/06/05 15:42:41 by luaraujo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,20 @@ static int	get_the_variables(int argc, char **argv, t_data *data)
 	return (1);
 }
 
+void	init_variables(t_data *data)
+{
+	data->start_time = get_time();
+	data->philos = malloc(sizeof(t_philo) * data->n_philos);
+	data->threads = malloc(sizeof(pthread_t) * data->n_philos);
+	data->forks = malloc(sizeof(pthread_mutex_t) * data->n_forks);
+	data->id = 0;
+	data->death = 0;
+	data->pid_index = 0;
+	data->count_philos_filled = 0;
+	sem_unlink(SEM_NAME);
+	data->semaphore = sem_open(SEM_NAME, O_CREAT, 0600, data->n_forks);
+}
+
 int	main(int argc, char **argv)
 {
 	t_data	data;
@@ -41,18 +55,7 @@ int	main(int argc, char **argv)
 	}
 	if (get_the_variables(argc, argv, &data) == -1)
 		return (0);
-	data.start_time = get_time();
-	data.philos = malloc(sizeof(t_philo) * data.n_philos);
-	data.threads = malloc(sizeof(pthread_t) * data.n_philos);
-	data.forks = malloc(sizeof(pthread_mutex_t) * data.n_forks);
-	i = -1;
-	while (++i < data.n_forks)
-		pthread_mutex_init(&data.forks[i], NULL);
-	pthread_mutex_init(&data.block_print, NULL);
-	data->id = 0;
-	data->death = 0;
-	data.pid_index = 0;
-	data->count_philos_filled = 0;
+	init_variables(&data);
 	start_processes(&data);
 	return (0);
 }

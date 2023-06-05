@@ -6,7 +6,7 @@
 /*   By: luaraujo <luaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/01 16:51:36 by luaraujo          #+#    #+#             */
-/*   Updated: 2023/06/02 17:24:37 by luaraujo         ###   ########.fr       */
+/*   Updated: 2023/06/05 16:41:21 by luaraujo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,9 @@
 
 void	philos(t_data *data, int id)
 {
-	
+	data->semaphore = sem_open(SEM_NAME, O_RDWR);
+	data->philos[id].eat_count = 0;
+	think(&(*data), id);
 }
 
 void	start_processes(t_data *data)
