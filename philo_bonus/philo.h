@@ -6,7 +6,7 @@
 /*   By: luaraujo <luaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/06 16:09:12 by luaraujo          #+#    #+#             */
-/*   Updated: 2023/06/05 15:42:17 by luaraujo         ###   ########.fr       */
+/*   Updated: 2023/06/13 15:43:28 by luaraujo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,8 @@
 # include <semaphore.h>
 # include <signal.h>
 
-#define SEM_NAME "/forks"
+#define FORKS "/forks"
+#define DEATH "/death"
 
 typedef struct s_philo
 {
@@ -34,12 +35,14 @@ typedef struct s_philo
 	int		status;
 	long	start_time_to_die;
 	int		eat_count;
+	int		id;
 }				t_philo;
 
 typedef struct s_data
 {
 	pthread_t		*threads;
-	sem_t			*semaphore;
+	sem_t			*forks;
+	sem_t			*death;
 	t_philo			*philos;
 	int				n_philos;
 	int				n_forks;
@@ -49,7 +52,7 @@ typedef struct s_data
 	int				max_times_can_eat;
 	long			start_time;
 	long			time_now;
-	int				death;
+	//int				death;
 	int				id;
 	int				count_philos_filled;
 }				t_data;

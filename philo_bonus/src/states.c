@@ -6,7 +6,7 @@
 /*   By: luaraujo <luaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 13:42:29 by luaraujo          #+#    #+#             */
-/*   Updated: 2023/06/05 17:02:41 by luaraujo         ###   ########.fr       */
+/*   Updated: 2023/06/13 15:05:39 by luaraujo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,15 @@
 
 static int	eat(t_data *data, int id)
 {
-	sem_wait(data->semaphore);
+	sem_wait(data->forks);
 	print_states(&(*data), id, 'f');
-	sem_wait(data->semaphore);
+	sem_wait(data->forks);
 	print_states(&(*data), id, 'f');
 	print_states(&(*data), id, 'e');
 	data->philos[id].eat_count++;
 	usleep(data->time_to_eat * 1000);
-	sem_post(data->semaphore);
-	sem_post(data->semaphore);
+	sem_post(data->forks);
+	sem_post(data->forks);
 	return (1);
 }
 

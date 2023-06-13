@@ -6,7 +6,7 @@
 /*   By: luaraujo <luaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/15 17:11:47 by luaraujo          #+#    #+#             */
-/*   Updated: 2023/06/05 15:42:41 by luaraujo         ###   ########.fr       */
+/*   Updated: 2023/06/13 15:13:34 by luaraujo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,10 @@ void	init_variables(t_data *data)
 	data->death = 0;
 	data->pid_index = 0;
 	data->count_philos_filled = 0;
-	sem_unlink(SEM_NAME);
-	data->semaphore = sem_open(SEM_NAME, O_CREAT, 0600, data->n_forks);
+	sem_unlink(FORKS);
+	sem_unlink(DEATH);
+	data->forks = sem_open(FORKS, O_CREAT, 0600, data->n_forks);
+	data->death = sem_open(DEATH, O_CREAT, 0600, 1);
 }
 
 int	main(int argc, char **argv)
