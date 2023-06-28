@@ -31,16 +31,16 @@
 
 typedef struct s_philo
 {
-	pid_t	pid;
-	int		status;
-	long	start_time_to_die;
-	int		eat_count;
-	int		id;
+	pthread_t		id;
+	pid_t			pid;
+	int				status;
+	long			start_time_to_die;
+	int				eat_count;
 }				t_philo;
 
 typedef struct s_data
 {
-	pthread_t		*threads;
+	//pthread_t		*threads;
 	sem_t			*forks;
 	sem_t			*death;
 	t_philo			*philos;
@@ -52,6 +52,7 @@ typedef struct s_data
 	int				max_times_can_eat;
 	long			start_time;
 	long			time_now;
+	int				pid_index;
 	//int				death;
 	int				id;
 	int				count_philos_filled;
@@ -65,6 +66,7 @@ long	get_time(void);
 void	free_all(t_data *data);
 void	print_states(t_data *data, int id, char state);
 void	start_processes(t_data *data);
-void	philos(t_data *data);
+void	philos(t_data *data, int id);
+void	think(t_data *data, int id);
 
 #endif

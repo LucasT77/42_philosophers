@@ -33,10 +33,7 @@ void	init_variables(t_data *data)
 {
 	data->start_time = get_time();
 	data->philos = malloc(sizeof(t_philo) * data->n_philos);
-	data->threads = malloc(sizeof(pthread_t) * data->n_philos);
-	data->forks = malloc(sizeof(pthread_mutex_t) * data->n_forks);
 	data->id = 0;
-	data->death = 0;
 	data->pid_index = 0;
 	data->count_philos_filled = 0;
 	sem_unlink(FORKS);
@@ -48,7 +45,7 @@ void	init_variables(t_data *data)
 int	main(int argc, char **argv)
 {
 	t_data	data;
-	int		i;
+	//int		i;
 
 	if (argc < 5 || argc > 6)
 	{

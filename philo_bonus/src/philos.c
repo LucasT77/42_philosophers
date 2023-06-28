@@ -12,23 +12,28 @@
 
 #include "../philo.h"
 
-void	moniring_death(t_data *data)
+void	*monitoring_death(void *arg)
 {
+	t_data	*data;
+
+	data = (t_data *)arg;
 	data->death = sem_open(DEATH, O_RDWR);
 	sem_wait(data->death); // espera o sem = 1, ou seja, qnd um philo morre, o sem_post(death)
 	// end it all
-	return ;
+	return (0);
 }
 
 void	philos(t_data *data, int id)
 {
+	printf("philo %d started", id);
 	data->forks = sem_open(FORKS, O_RDWR);
 	data->death = sem_open(DEATH, O_RDWR);
 	sem_wait(data->death); // sem = 0
 	data->philos[id].eat_count = 0;
-	if (pthread_create(data->philos[id].id, NULL, moniring_death, &(*data)) == 0)
+	if (pthread_create(&data->philos[id].id, NULL, monitoring_death, &(*data)) == 0)
 	{
 		pthread_detach(data->philos[id].id);
+		free_all(&(*data));
 		return ;
 	}
 	pthread_join(data->philos[id].id, NULL);
@@ -50,10 +55,10 @@ void	start_processes(t_data *data)
 			data->id++;
 			break ;
 		}
-		data->philo[i].pid = pid;
+		data->philos[i].pid = pid;
 		i++;
 	}
 	i = -1;
 	while (++i < data->n_forks)
-		waitpid(data->philo[i].pid, &data->philo[i].status, 0);
+		waitpid(data->philos[i].pid, &data->philos[i].status, 0);
 }

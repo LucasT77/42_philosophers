@@ -51,22 +51,20 @@ long	get_time(void)
 
 void	free_all(t_data *data)
 {
-	int	i;
+	//int	i;
 
-	i = 0;
-	while (++i < data->n_forks)
-		pthread_mutex_destroy(&data->forks[i]);
-	pthread_mutex_destroy(&data->block_print);
+	//i = 0;
+	sem_close(data->forks);
+	sem_close(data->death);
 	free(data->philos);
-	free(data->threads);
-	free(data->forks);
+
 }
 
 void	print_states(t_data *data, int id, char state)
 {
 	if (data->death != 0)
 		return ;
-	pthread_mutex_lock(&data->block_print);
+	//pthread_mutex_lock(&data->block_print);
 	if (state == 'd')
 		printf ("%ld %d died\n", data->time_now, (id + 1));
 	else if (state == 'f' && data->death == 0)
@@ -77,5 +75,5 @@ void	print_states(t_data *data, int id, char state)
 		printf ("%ld %d is sleeping\n", data->time_now, (id + 1));
 	else if (state == 't' && data->death == 0)
 		printf ("%ld %d is thinking\n", data->time_now, (id + 1));
-	pthread_mutex_unlock(&data->block_print);
+	//pthread_mutex_unlock(&data->block_print);
 }

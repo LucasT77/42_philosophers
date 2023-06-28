@@ -41,8 +41,18 @@ void	think(t_data *data, int id)
 	data->philos[id].start_time_to_die = get_time();
 	while (1)
 	{
-		print_states(&(*data), id, 's');
-		eat(&(*data), id);
-		sleeping(&(*data), id);
+		print_states(&(*data), id, 't');
+		if (eat(&(*data), id))
+		{
+			data->philos[id].start_time_to_die = get_time();
+			sleeping(&(*data), id);
+		}
+		if (get_time() - data->philos[id].start_time_to_die
+			>= data->time_to_die)
+		{
+			data->time_now = get_time() - data->start_time;
+			print_states(&(*data), id, 'd');
+			sem_post(data->death);
+		}
 	}
 }
