@@ -6,7 +6,7 @@
 /*   By: luaraujo <luaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 13:28:43 by luaraujo          #+#    #+#             */
-/*   Updated: 2023/05/25 16:59:00 by luaraujo         ###   ########.fr       */
+/*   Updated: 2023/07/13 17:29:02 by luaraujo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,8 @@ void	print_states(t_data *data, int id, char state)
 		printf ("%ld %d died\n", data->time_now, (id + 1));
 	else if (state == 'f' && data->death == 0)
 		printf ("%ld %d has taken a fork\n", data->time_now, (id + 1));
+	else if (state == 'x' && data->death == 0)
+		printf ("%ld %d has dropped a fork\n", data->time_now, (id + 1));
 	else if (state == 'e' && data->death == 0)
 		printf ("%ld %d is eating\n", data->time_now, (id + 1));
 	else if (state == 's' && data->death == 0)

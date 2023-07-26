@@ -23,7 +23,6 @@ static int	get_the_variables(int argc, char **argv, t_data *data)
 		data->max_times_can_eat = ft_atoi(argv[5]);
 	else
 		data->max_times_can_eat = -1;
-	data->philos = malloc(sizeof(int) * data->n_philos);
 	if (!data->philos)
 		return (-1);
 	return (1);
@@ -36,7 +35,7 @@ int	main(int argc, char **argv)
 
 	if (argc < 5 || argc > 6)
 	{
-		printf("Incorrect number of arguments!");
+		printf("Incorrect number of arguments!\n");
 		return (0);
 	}
 	if (get_the_variables(argc, argv, &data) == -1)

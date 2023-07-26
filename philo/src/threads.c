@@ -6,7 +6,7 @@
 /*   By: luaraujo <luaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 16:22:53 by luaraujo          #+#    #+#             */
-/*   Updated: 2023/05/25 16:57:55 by luaraujo         ###   ########.fr       */
+/*   Updated: 2023/07/26 15:14:24 by luaraujo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,12 +31,13 @@ void	start_threads(t_data *data)
 	data->count_philos_filled = 0;
 	while (data->id < data->n_philos)
 	{
+		//printf("data->id = %d\n", data->id);
 		pthread_create(&data->threads[data->id], NULL, philo, &(*data));
 		data->id++;
 	}
 	data->id = 0;
 	while (data->id < data->n_philos)
-	{	
+	{
 		if (data->death != 0)
 			pthread_detach(data->threads[data->id]);
 		pthread_join(data->threads[data->id], NULL);

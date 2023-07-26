@@ -6,7 +6,7 @@
 /*   By: luaraujo <luaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 13:42:29 by luaraujo          #+#    #+#             */
-/*   Updated: 2023/05/25 17:16:56 by luaraujo         ###   ########.fr       */
+/*   Updated: 2023/07/26 16:50:43 by luaraujo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,20 +16,15 @@ static int	eat(t_data *data, int id)
 {
 	int		id2;
 
-	if (data->death != 0)
+	if (data->death != 0 || data->n_philos <= 1)
 		return (0);
 	id2 = id + 1;
 	if (id2 == data->n_forks)
 		id2 = 0;
-	if (pthread_mutex_lock(&data->forks[id]) != 0)
-		return (0);
+	pthread_mutex_lock(&data->forks[id]);
 	data->time_now = get_time() - data->start_time;
 	print_states(&(*data), id, 'f');
-	if (pthread_mutex_lock(&data->forks[id2]) != 0)
-	{
-		pthread_mutex_unlock(&data->forks[id]);
-		return (0);
-	}
+	pthread_mutex_lock(&data->forks[id2]);
 	data->time_now = get_time() - data->start_time;
 	print_states(&(*data), id, 'f');
 	print_states(&(*data), id, 'e');
@@ -63,7 +58,7 @@ void	think(t_data *data, int id)
 		data->time_now = get_time() - data->start_time;
 		print_states(&(*data), id, 't');
 		if (get_time() - data->philos[id].start_time_to_die
-			>= data->time_to_die)
+			>= data->time_to_die || data->n_philos <= 1)
 		{
 			data->time_now = get_time() - data->start_time;
 			print_states(&(*data), id, 'd');
