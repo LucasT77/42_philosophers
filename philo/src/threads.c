@@ -6,7 +6,7 @@
 /*   By: luaraujo <luaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 16:22:53 by luaraujo          #+#    #+#             */
-/*   Updated: 2023/07/27 14:53:52 by luaraujo         ###   ########.fr       */
+/*   Updated: 2023/07/27 16:06:41 by luaraujo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,10 @@ void	*philo(void *arg)
 	data = (t_data *)arg;
 	id = data->id;
 	data->philos[id].eat_count = 0;
-	data->forks_available = malloc(sizeof(int) * n_forks);
+	data->forks_available = malloc(sizeof(int) * data->n_forks);
 	i = -1;
-	while (++i < n_forks)
-		forks_available[i] == 1;
+	while (++i < data->n_forks)
+		data->forks_available[i] = 1;
 	think(&(*data), id);
 	return (0);
 }
