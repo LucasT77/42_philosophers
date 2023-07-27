@@ -6,7 +6,7 @@
 /*   By: luaraujo <luaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 13:28:43 by luaraujo          #+#    #+#             */
-/*   Updated: 2023/07/13 17:29:02 by luaraujo         ###   ########.fr       */
+/*   Updated: 2023/07/27 14:51:04 by luaraujo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,7 @@ void	free_all(t_data *data)
 	free(data->philos);
 	free(data->threads);
 	free(data->forks);
+	free(data->forks_available);
 }
 
 void	print_states(t_data *data, int id, char state)

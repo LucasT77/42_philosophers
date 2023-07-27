@@ -6,7 +6,7 @@
 /*   By: luaraujo <luaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/06 16:09:12 by luaraujo          #+#    #+#             */
-/*   Updated: 2023/05/25 15:52:06 by luaraujo         ###   ########.fr       */
+/*   Updated: 2023/07/27 14:47:21 by luaraujo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ typedef struct s_data
 	pthread_mutex_t	*forks;
 	pthread_mutex_t	block_print;
 	t_philo			*philos;
+	int				*forks_available;
 	int				n_philos;
 	int				n_forks;
 	int				time_to_die;
