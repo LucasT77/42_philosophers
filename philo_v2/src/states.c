@@ -6,7 +6,7 @@
 /*   By: luaraujo <luaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 13:42:29 by luaraujo          #+#    #+#             */
-/*   Updated: 2023/07/30 16:55:46 by luaraujo         ###   ########.fr       */
+/*   Updated: 2023/08/01 16:26:05 by luaraujo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,18 +65,17 @@ static int	eat(t_data *data, int id)
 		print_states(&(*data), id, 's');
 		usleep(data->time_to_sleep * 1000);
 	}
-	print_states(&(*data), id, 't');
 	return (1);
 }
 
 void	think(t_data *data, int id)
 {
-	printf("I am thread %d\n", id + 1);
 	data->philos[id].start_time_to_die = get_time();
 	while (data->death == 0 && data->count_philos_filled < data->n_philos)
 	{
 		get_forks(&(*data), id);
 		eat(&(*data), id);
+		print_states(&(*data), id, 't');
 		data->time_now = get_time() - data->start_time;
 		if (get_time() - data->philos[id].start_time_to_die
 			>= data->time_to_die || data->n_philos <= 1)

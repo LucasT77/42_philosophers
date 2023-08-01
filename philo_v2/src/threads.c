@@ -6,7 +6,7 @@
 /*   By: luaraujo <luaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 16:22:53 by luaraujo          #+#    #+#             */
-/*   Updated: 2023/07/30 16:55:52 by luaraujo         ###   ########.fr       */
+/*   Updated: 2023/08/01 16:17:52 by luaraujo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,14 +32,13 @@ void	*philo(void *arg)
 
 void	start_threads(t_data *data)
 {
-	data->id = 0;
+	data->id = -1;
 	data->death = 0;
 	data->count_philos_filled = 0;
-	while (data->id < data->n_philos)
+	while (++data->id < data->n_philos)
 	{
-		//printf("data->id = %d\n", data->id);
 		pthread_create(&data->threads[data->id], NULL, philo, &(*data));
-		data->id++;
+		usleep(100);
 	}
 	data->id = 0;
 	while (data->id < data->n_philos)
