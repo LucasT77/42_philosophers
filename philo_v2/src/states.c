@@ -90,3 +90,9 @@ void	think(t_data *data, int id)
 			data->death = 1;
 	}
 }
+
+/*
+	Ideia: criar mais uma thread para verificar constantemente se um philo morreu.
+	Pode ser usado um mutex. Enquanto o mutex for bloqueado a funcao death continua
+	esperando, e assim que um philo morre o mutex eh desbloqueado, terminando a funcao, que termina tudo.
+*/
