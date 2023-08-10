@@ -6,7 +6,7 @@
 /*   By: luaraujo <luaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 13:42:29 by luaraujo          #+#    #+#             */
-/*   Updated: 2023/08/10 17:42:20 by luaraujo         ###   ########.fr       */
+/*   Updated: 2023/08/10 17:51:37 by luaraujo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ static int	eat(t_data *data, int id)
 {
 	int		id2;
 
-	if (data->death || data->n_philos <= 1)
+	if (data->death || data->n_philos <= 1 || is_dead(&(*data), id))
 		return (0);
 	id2 = id + 1;
 	if (id2 == data->n_forks)
@@ -96,8 +96,12 @@ void	think(t_data *data, int id)
 	while (!is_dead(&(*data), id))
 	{
 		if (get_forks(&(*data), id))
+		{
 			if (eat(&(*data), id))
 				print_states(&(*data), id, 't');
+			else
+				return ;
+		}
 		if (is_dead(&(*data), id))
 			return ;
 	}
