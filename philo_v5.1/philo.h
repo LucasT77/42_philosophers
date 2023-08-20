@@ -6,7 +6,7 @@
 /*   By: luaraujo <luaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/06 16:09:12 by luaraujo          #+#    #+#             */
-/*   Updated: 2023/07/30 16:05:18 by luaraujo         ###   ########.fr       */
+/*   Updated: 2023/08/20 15:05:06 by luaraujo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ typedef struct s_data
 
 int		ft_atoi(const char *nptr);
 long	get_time(void);
-void	start_threads(t_data *data);
+int		start_threads(t_data *data);
 void	*philo(void *arg);
 void	*death(void *arg);
 void	think(t_philo *philo);

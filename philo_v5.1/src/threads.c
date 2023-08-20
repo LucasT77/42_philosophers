@@ -6,7 +6,7 @@
 /*   By: luaraujo <luaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 16:22:53 by luaraujo          #+#    #+#             */
-/*   Updated: 2023/08/03 16:37:43 by luaraujo         ###   ########.fr       */
+/*   Updated: 2023/08/20 17:24:00 by luaraujo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,22 +70,22 @@ int	start_threads(t_data *data)
 	int	i;
 
 	data->start_time = get_time();
-	philo_init(&data);
+	philo_init(&(*data));
 	i = -1;
 	while (++i < data->n_philos)
 	{
 		if (i % 2)
 		{
-			data->philo[i].fork1 = (i + 1) % data->n_philos;
-			data->philo[i].fork2 = i;
+			data->philos[i].fork1 = (i + 1) % data->n_philos;
+			data->philos[i].fork2 = i;
 		}
 		else
 		{
-			data->philo[i].fork1 = i;
-			data->philo[i].fork2 = (i + 1) % data->n_philos;;
+			data->philos[i].fork1 = i;
+			data->philos[i].fork2 = (i + 1) % data->n_philos;;
 		}
-		data->philo[i].id = i;
-		if (pthread_create(&data->philos[i].thread, NULL, &philo, data->philos[i]))
+		data->philos[i].id = i;
+		if (pthread_create(&data->philos[i].thread, NULL, &philo, &(*data).philos[i]))
 			return (0);
 	}
 	if (data->n_philos > 1)

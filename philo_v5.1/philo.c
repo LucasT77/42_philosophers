@@ -6,7 +6,7 @@
 /*   By: luaraujo <luaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/15 17:11:47 by luaraujo          #+#    #+#             */
-/*   Updated: 2023/05/23 15:20:27 by luaraujo         ###   ########.fr       */
+/*   Updated: 2023/08/20 17:12:44 by luaraujo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ static void	stop_threads(t_data	*data)
 	if (data->n_philos > 1)
 		pthread_join(data->death, NULL);
 	free_all(&(*data));
+	pthread_detach(data->death);
 }
 
 int	main(int argc, char **argv)

@@ -6,7 +6,7 @@
 /*   By: luaraujo <luaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 13:28:43 by luaraujo          #+#    #+#             */
-/*   Updated: 2023/07/30 15:50:46 by luaraujo         ###   ########.fr       */
+/*   Updated: 2023/08/20 16:59:21 by luaraujo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,11 +58,10 @@ void	free_all(t_data *data)
 		pthread_mutex_destroy(&data->forks[i]);
 	pthread_mutex_destroy(&data->block_print);
 	pthread_mutex_destroy(&data->getting_forks);
-	pthread_mutex_destroy(&data->dead);
+	//pthread_mutex_destroy(&data->dead);
 	free(data->philos);
 	//free(data->threads);
 	free(data->forks);
-	free(data->forks_available);
 }
 
 void	print_states(t_philo *philo, char state)
