@@ -1,6 +1,0 @@
-Problema: as threads estao sempre seguindo a ordem numerica, dessa forma, philos que poderiam pegar forks nao pegam qundo devem
-
-
-Solucao:
-Eu acho que o problema esta nas variaveis de tempo, que estao na estrutura principal, 
-mas deveriam estar na estrutura individual de cada thread. (Nao deu muito certo)
